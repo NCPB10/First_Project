@@ -2,9 +2,34 @@ pipeline{
       agent any
     stages{
         stage('git checkout'){
+            when {
+                  branch 'develop'
+                  }
             steps{
-                echo "Hello world"
+                echo "git stage"
             }
         }
+        stage('maven build'){
+            when {
+                  branch 'develop'
+                  }
+            steps{
+                echo "build stage"
+            }
+        }
+        stage('dev deploy'){
+            when {
+                  branch 'develop'
+                  }
+            steps{
+                echo "deploy dev server"
+            }
+        }
+        stage('prod deploy'){
+            when {
+                  branch 'main'
+                  }
+            steps{
+                echo "deploy to production server"
     }
 }
